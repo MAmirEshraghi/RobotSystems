@@ -1,3 +1,17 @@
-.vscode/*
-build/*
-bk/
+# Python junk
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Virtualenv
+venv/
+.venv/
+venvs/
+
+# OS
+.DS_Store
