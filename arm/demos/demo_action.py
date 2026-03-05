@@ -37,8 +37,8 @@ def main():
 
     print("3) Small safe move (no pick/place)")
     # Safe-ish point above the mat; adjust if your setup differs
-    ok, _ = m.move_to(0, 15, 10, pitch=-60, roll=-60, yaw=0, duration_ms=1200)
-    print("Move ok:", ok)
+    ret = m.move_to(0, 15, 10, pitch=-60, roll=-60, yaw=0, duration_ms=1200)
+    print("move_to returned:", ret)
     time.sleep(1.0)
 
     print("4) Back home")
