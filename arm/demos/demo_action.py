@@ -1,42 +1,47 @@
 #!/usr/bin/env python3
 # coding: utf-8
-"""
-Demo for the "separate action" check-in.
+"""arm/demos/demo_action.py
 
-Run on the arm Pi with:
+Week 8 in-class check-in: Demonstrate having separated out the action code.
+
+What this demo proves:
+- You can move the arm using *your* module (arm/src/motion.py)
+- No perception is involved
+- Vendor scripts remain untouched
+
+Run on the Arm Pi:
   sudo python3 arm/demos/demo_action.py
-
-What it shows:
-- Motion class can home, open/close gripper, and move to a safe point.
 """
+
 import os
 import sys
 import time
 
+# allow: from src.motion import Motion
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from src.motion import Motion  # noqa
 
 
 def main():
     m = Motion()
-    print("Homing...")
+
+    print("1) Home pose")
     m.home()
-    time.sleep(0.5)
+    time.sleep(1.0)
 
-    print("Open gripper...")
+    print("2) Open / close gripper (no motion)")
     m.open_gripper()
-    time.sleep(0.5)
-
-    print("Close gripper...")
+    time.sleep(0.8)
     m.close_gripper()
-    time.sleep(0.5)
+    time.sleep(0.8)
 
-    print("Move to a safe point (0, 15, 10)...")
+    print("3) Small safe move (no pick/place)")
+    # Safe-ish point above the mat; adjust if your setup differs
     ok, _ = m.move_to(0, 15, 10, pitch=-60, roll=-60, yaw=0, duration_ms=1200)
     print("Move ok:", ok)
-    time.sleep(0.5)
+    time.sleep(1.0)
 
-    print("Back home...")
+    print("4) Back home")
     m.home()
     print("Done.")
 
